@@ -6735,15 +6735,13 @@ img,
 ul {
   max-width: 100%;
 }
-a {
-  color: red;
-}
 ul {
   list-style: none;
 }
 a:hover {
   text-decoration: none;
   cursor: pointer;
+  color: red;
 }
 header nav {
   border-bottom: 2px solid #777777;
