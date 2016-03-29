@@ -71,10 +71,15 @@
 $arr =  directoryToArray($container);
 
   $json_file_dir =  get_template_directory() . '/json/static-pages.json';
-  if (!file_exists($json_file_dir)) {
+  $json_dir = get_template_directory() . '/json';
+  if (!file_exists($json_dir)) {
+    mkdir($json_dir, 0777);
     $fp = fopen($json_file_dir, 'w+');
     fclose($fp);
-  };
+  }else{
+    $fp = fopen($json_file_dir, 'w+');
+    fclose($fp);
+  }
 
 $finalArr = [];
 
