@@ -65,6 +65,7 @@
     }
 
 $arr =  directoryToArray($container);
+
 echo "<pre>";
 print_r($arr);
 
@@ -78,10 +79,14 @@ $finalArr = [];
 
 foreach($arr as $key => $value) {
   $newArr = explode('/', $value);
-  print_r($newArr);
-  if (isset($newArr[12])) {
+  $xpl = explode($container, $value);
 
-    $arr =  $newArr[10] . '/' . $newArr[11] . '/' . $newArr[12] . '/' . $newArr[13];
+  $newArr = explode('/', $xpl[1]);
+echo "<pre>";
+  print_r($newArr);
+  if (isset($newArr[2])) {
+
+    $arr = 'upload_dir/' .  $newArr[1] . '/' . $newArr[2] . '/' . $newArr[3];
 
     array_push($finalArr, $arr);
   }
