@@ -47,7 +47,7 @@
               }
               if (!$skip && !$skipByExclude) {
                 if (is_dir($directory. DIRECTORY_SEPARATOR . $file)) {
-                    
+
                     if($recursive) {
                         $arrayItems = array_merge($arrayItems, directoryToArray($directory. DIRECTORY_SEPARATOR . $file, $recursive, $listDirs, $listFiles, $exclude));
                     }
@@ -73,11 +73,24 @@ $arr =  directoryToArray($container);
 echo "<pre>";
 print_r($arr);
 
+$json_file_dir =  get_template_directory() . '/json/static-pages.json';
+  $json_dir = get_template_directory() . '/json';
+  if (!file_exists($json_dir)) {
+    mkdir($json_dir, 0777);
+    $fp = fopen($json_file_dir, 'w+');
+    fclose($fp);
+  }else{
+    $fp = fopen($json_file_dir, 'w+');
+    fclose($fp);
+  }
+
+/*
   $json_file_dir =  get_template_directory() . '/json/static-pages.json';
   if (!file_exists($json_file_dir)) {
     $fp = fopen($json_file_dir, 'w+');
     fclose($fp);
   };
+*/
 
 $finalArr = [];
 
