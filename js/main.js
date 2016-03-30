@@ -107,8 +107,10 @@ var $body = $('body');
                     //console.log($parent);
                     $body.find('.dropdown-menu[data-id="' + parentId + '"]').append($dropDownList.append([$dropDownLink, $dropDownMenu]));
 
+
                 }else {
                     var $parent = $dropDownList.closest($dropDownMenu).attr('data-id', categories[i].parent).html('<h1>This is submenu</h1>');
+                    console.log(this);
 
 
                     console.log($dropDownList.attr('data-id', categories[i].parent));
