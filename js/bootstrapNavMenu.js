@@ -26,17 +26,18 @@
                 '</ul>' +
                 '</div>' +
                 '</div>' +
-                +'</nav></header>');
+                '</nav></header>');
 
         $body.prepend($nav);
         $sidebarRight = $body.find('.sidebar-right');
         //$sidebarRight.find('.page-link').append('<li><h4>PAGES</h4></li>');
 
         $featuredImage = $('<figure><img class="featured-image" src="wp-content/themes/base/img/img.jpg" /></figure>');
+
         $nav.after($featuredImage);
         $('.header').headtacular({
             scrollPoint: 100
         });
 
     });
-})(jQuery)
+})(jQuery);

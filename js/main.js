@@ -1,5 +1,5 @@
 (function($) {
-
+var $body = $('body');
 
     /**
      * API Documentation:
@@ -95,13 +95,28 @@
         var categories = memory.categories;
         for (var i = 0; i < categories.length; i++) {
             $dropDownLink = $('<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-id="' + categories[i].id + '">' + categories[i].name + '</a>');
-            $dropDownList = $('<li class="dropdown dropdown-submenu"/>');
+
+            $dropDownList = $('<li class="dropdown dropdown-submenu" data-id="' + categories[i].id + '"/>');
             $dropDownMenu = $('<ul class="dropdown-menu" data-id="' + categories[i].id + '"/>');
             if (categories[i].parent == 0) {
                 $('.buildings').prepend($dropDownList.append([$dropDownLink, $dropDownMenu]));
-                parentId = categories[i].parent;
             } else {
-                $('.dropdown-menu[data-id="' + categories[i].parent + '"]').prepend($dropDownList.append([$dropDownLink, $dropDownMenu]));
+                var parentId = categories[i].parent;
+                //console.log(categories[i].parent);
+                $parent = $body.find('.dropdown-menu[data-id="' + parentId + '"]');
+                if ($parent.length) {
+                    //console.log($parent);
+                    $body.find('.dropdown-menu[data-id="' + parentId + '"]').append($dropDownList.append([$dropDownLink, $dropDownMenu]));
+
+
+                }else {
+                    var $parent = $dropDownList.closest($dropDownMenu).attr('data-id', categories[i].parent).html('<h1>This is submenu</h1>');
+                    console.log(this);
+
+
+                    console.log($dropDownList.attr('data-id', categories[i].parent));
+                    console.log(categories[i].parent);
+                }
             }
         }
     };

@@ -71,9 +71,6 @@
 
 $arr =  directoryToArray($container);
 
-echo "<pre>";
-print_r($arr);
-
 $json_file_dir =  get_template_directory() . '/json/static-pages.json';
 
   $json_dir = get_template_directory() . '/json';
@@ -106,15 +103,11 @@ $json_file_dir =  get_template_directory() . '/json/static-pages.json';
 $finalArr = [];
 
 foreach($arr as $key => $value) {
-  var_dump($value);
-  $value = str_replace("\\","/",$value);
-  var_dump($value,"",$container);
+  $value = str_replace("\\","/",$value); 
   $newArr = explode('/', $value);
   $xpl = explode($container, $value);
 
   $newArr = explode('/', $xpl[1]);
-echo "<pre>";
-  print_r($newArr);
   if (isset($newArr[2])) {
 
     $arr = 'upload_dir/' .  $newArr[1] . '/' . $newArr[2] . '/' . $newArr[3];
@@ -125,7 +118,6 @@ echo "<pre>";
 
 }
 
-var_dump($arr,"final",$finalArr);
      $json = ['static_urls' => $finalArr];
    //   $urls  = $json;
     $toJson =  json_encode($json, JSON_PRETTY_PRINT);
