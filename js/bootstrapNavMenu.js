@@ -32,7 +32,7 @@
         $sidebarRight = $body.find('.sidebar-right');
         //$sidebarRight.find('.page-link').append('<li><h4>PAGES</h4></li>');
 
-        $featuredImage = $('<figure><img class="featured-image" src="http://localhost/wpREST_mohamad_rashid/wp-content/uploads/2013/03/image-alignment-1200x4002.jpg" /></figure>');
+        $featuredImage = $('<figure><img class="featured-image" src="wp-content/themes/base/img/img.jpg" /></figure>');
         $nav.after($featuredImage);
         $('.header').headtacular({
             scrollPoint: 100
