@@ -6738,6 +6738,9 @@ ul {
 ul {
   list-style: none;
 }
+a {
+  color: black;
+}
 a:hover {
   text-decoration: none;
   cursor: pointer;
