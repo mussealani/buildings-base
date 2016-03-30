@@ -33,6 +33,7 @@
 
 
     function directoryToArray($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '') {
+
         $arrayItems = array();
         $skipByExclude = false;
         $handle = opendir($directory);
@@ -65,7 +66,9 @@
         }
         closedir($handle);
         }
+
         return $arrayItems;
+
     }
 
 $arr =  directoryToArray($container);
@@ -89,13 +92,13 @@ foreach($arr as $key => $value) {
 
   $newArr = explode('/', $xpl[1]);
 
-  if (isset($newArr[2]) && isset($newArr[3])) {
+  if (isset($newArr[2])) {
+
 
     $arr = 'upload_dir/' .  $newArr[1] . '/' . $newArr[2] . '/' . $newArr[3];
 
     array_push($finalArr, $arr);
   }
-
 }
 
 
