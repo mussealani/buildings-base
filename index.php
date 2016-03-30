@@ -17,7 +17,8 @@
 <?php
 
   $main_path = wp_upload_dir();
-    $container = $main_path['basedir'] . '/upload_dir';
+  $container = $main_path['basedir'] . '/upload_dir';
+  $container = str_replace("\\","/",$container);
 
   // Create upload_dir folder to hold the documents that will be uploaded
   if (!file_exists($container)) {
@@ -33,7 +34,6 @@
 
 
     function directoryToArray($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '') {
-
         $arrayItems = array();
         $skipByExclude = false;
         $handle = opendir($directory);
@@ -66,45 +66,69 @@
         }
         closedir($handle);
         }
-
         return $arrayItems;
-
     }
 
 $arr =  directoryToArray($container);
 
-  $json_file_dir =  get_template_directory() . '/json/static-pages.json';
+echo "<pre>";
+print_r($arr);
+
+$json_file_dir =  get_template_directory() . '/json/static-pages.json';
+
   $json_dir = get_template_directory() . '/json';
+
   if (!file_exists($json_dir)) {
+
     mkdir($json_dir, 0777);
-    $fp = fopen($json_file_dir, 'w+');
-    fclose($fp);
-  }else{
-    $fp = fopen($json_file_dir, 'w+');
-    fclose($fp);
   }
+
+    //$fp = fopen($json_file_dir, 'w+');
+
+   //close($fp);
+
+  //}else{
+
+  //  $fp = fopen($json_file_dir, 'w+');
+
+    //close($fp);
+
+  //}
+
+/*
+  $json_file_dir =  get_template_directory() . '/json/static-pages.json';
+  if (!file_exists($json_file_dir)) {
+    $fp = fopen($json_file_dir, 'w+');
+    fclose($fp);
+  };
+*/
 
 $finalArr = [];
 
 foreach($arr as $key => $value) {
+  var_dump($value);
+  $value = str_replace("\\","/",$value);
+  var_dump($value,"",$container);
   $newArr = explode('/', $value);
   $xpl = explode($container, $value);
 
   $newArr = explode('/', $xpl[1]);
-
+echo "<pre>";
+  print_r($newArr);
   if (isset($newArr[2])) {
-
 
     $arr = 'upload_dir/' .  $newArr[1] . '/' . $newArr[2] . '/' . $newArr[3];
 
     array_push($finalArr, $arr);
   }
+
+
 }
 
-
+var_dump($arr,"final",$finalArr);
      $json = ['static_urls' => $finalArr];
-      $urls  = $json;
-    $toJson =  json_encode($urls, JSON_PRETTY_PRINT);
+   //   $urls  = $json;
+    $toJson =  json_encode($json, JSON_PRETTY_PRINT);
     file_put_contents($json_file_dir,$toJson);
 
 
