@@ -6744,7 +6744,7 @@ a {
 a:hover {
   text-decoration: none;
   cursor: pointer;
-  color: red;
+  color: #eee;
 }
 header nav {
   border-bottom: 2px solid #777777;
